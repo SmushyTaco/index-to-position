@@ -1,30 +1,52 @@
 {
-	"name": "index-to-position",
+	"name": "@smushytaco/index-to-position",
 	"version": "1.0.0",
 	"description": "Convert a string index to its line and column position",
 	"license": "MIT",
-	"repository": "sindresorhus/index-to-position",
-	"funding": "https://github.com/sponsors/sindresorhus",
+	"private": false,
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.cts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SmushyTaco/index-to-position.git"
+	},
+	"bugs": {
+		"url": "https://github.com/SmushyTaco/index-to-position/issues"
+	},
 	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "https://sindresorhus.com"
+		"name": "SmushyTaco",
+		"email": "personal@nikanradan.com"
 	},
 	"type": "module",
-	"exports": {
-		"types": "./index.d.ts",
-		"default": "./index.js"
-	},
-	"sideEffects": false,
 	"engines": {
-		"node": ">=18"
+		"node": ">=18.12.0",
+		"npm": ">=8.19.2"
+	},
+	"publishConfig": {
+		"access": "public"
 	},
 	"scripts": {
-		"test": "xo && ava && tsc index.d.ts"
+		"clean": "npx del-cli dist",
+		"build": "npm run clean && npx vite build",
+		"prepare": "npm run build"
 	},
 	"files": [
-		"index.js",
-		"index.d.ts"
+		"dist",
+		"LICENSE",
+		"README.md"
 	],
 	"keywords": [
 		"index",
@@ -40,8 +62,18 @@
 		"location"
 	],
 	"devDependencies": {
-		"ava": "^5.3.1",
-		"typescript": "^5.2.2",
-		"xo": "^0.56.0"
+		"@types/node": "^22.10.5",
+		"del-cli": "^6.0.0",
+		"@eslint/js": "^9.17.0",
+		"@smushytaco/versionchecker": "^1.0.4",
+		"@typescript-eslint/eslint-plugin": "^8.19.0",
+		"@typescript-eslint/parser": "^8.19.0",
+		"typescript-eslint": "^8.19.0",
+		"vite": "^6.0.7",
+		"vite-plugin-tsc-transpile": "^1.0.3",
+		"vite-plugin-dts": "^4.4.0",
+		"globals": "^15.14.0",
+		"prettier": "^3.4.2",
+		"typescript": "^5.7.2"
 	}
 }
